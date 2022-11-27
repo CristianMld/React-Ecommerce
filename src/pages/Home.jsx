@@ -38,7 +38,7 @@ const Home = () => {
 
       <InputGroup className="mb-3">
         <Form.Control
-          placeholder="Recipient's username"
+          placeholder="look for a product..."
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           value={inputSearch}
@@ -56,7 +56,8 @@ const Home = () => {
         <li key={product.id}>
           <Link to={`/product/${product.id}`}>
             {product.title}
-            <img src={product.productImgs[0]} alt="" />
+            <br />
+            <img src={product.productImgs[0]} style={{width: 200}} alt="" />
           </Link>
         </li>
       ))}
