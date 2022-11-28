@@ -20,6 +20,10 @@ const Home = () => {
   }, [])
 
   // console.log(categoriesList);
+  
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   return (
     <div>
@@ -49,7 +53,7 @@ const Home = () => {
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               value={inputSearch}
-              onChange={(e) => setInputSearch(e.target.value)}
+              onChange={(e) => setInputSearch(capitalizeFirstLetter(e.target.value))}
             />
             <Button
               variant="outline-secondary"
