@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
@@ -17,12 +18,14 @@ function App() {
       <HashRouter>
         <NavBar />
         {isLoading && <LoadingScreen />}
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/product/:id' element={<ProductsDetail/>}/>
-          <Route path='/purchases' element={<Purchases/>}/>
-          <Route path='/login' element={<Login/>}/>
-        </Routes>
+        <Container className='my-5'>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/product/:id' element={<ProductsDetail/>}/>
+            <Route path='/purchases' element={<Purchases/>}/>
+            <Route path='/login' element={<Login/>}/>
+          </Routes>
+        </Container>
       </HashRouter>
     </div>
   )

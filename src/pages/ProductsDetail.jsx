@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Col, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getProductsThunk } from "../store/slices/products.slice";
@@ -16,25 +17,40 @@ const ProductsDetail = () => {
 
   const productsList = useSelector(state => state.products);
 
-  const product = productsList.find(productsItem => 
+  const product = productsList.find(productsItem =>
     productsItem.id === Number(id));
-  const relatedProducts = productsList.filter(productsItem => 
-    productsItem.category.id === product.category.id)
+  const relatedProducts = productsList.filter(productsItem =>
+    productsItem.category.id === product.category.id
+    && productsItem.id !== product.id)
 
   // console.log(relatedProducts);
 
   return (
     <div>
       <h1>{product?.title}</h1>
-      <img src={product?.productImgs[0]} alt="" />
-      <h3>Related products:</h3>
-      {relatedProducts.map(productsItem => (
-        <li key={productsItem.id}>
-          <Link to={`/product/${productsItem.id}`}>
-            {productsItem.title}
-          </Link>
-        </li>
-      ))}
+      <Row>
+        {/* Product's description */}
+        <Col lg={9}>
+          <img src={product?.productImgs[0]} alt="" className="img-fluid" />
+          <p>{product?.description}</p>
+        </Col>
+
+        {/* Related products */}
+        <Col lg={3}>
+          <h3>Related products:</h3>
+          <ListGroup variant="flush">
+            {relatedProducts.map(productsItem => (
+              <ListGroup.Item key={productsItem.id}>
+                <Link to={`/product/${productsItem.id}`}>
+                  <img src={productsItem?.productImgs[0]} alt="" className="img-fluid" />
+                  {productsItem.title}
+                </Link>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+
+        </Col>
+      </Row>
     </div>
   );
 };
