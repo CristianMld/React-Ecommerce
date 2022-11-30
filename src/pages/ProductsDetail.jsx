@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Col, ListGroup, Row } from "react-bootstrap";
+import { Button, Col, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getProductsThunk } from "../store/slices/products.slice";
@@ -28,6 +28,9 @@ const ProductsDetail = () => {
   return (
     <div>
       <h1>{product?.title}</h1>
+      <div>
+        <Button>Add</Button>
+      </div>
       <Row>
         {/* Product's description */}
         <Col lg={9}>
@@ -42,8 +45,8 @@ const ProductsDetail = () => {
             {relatedProducts.map(productsItem => (
               <ListGroup.Item key={productsItem.id}>
                 <Link to={`/product/${productsItem.id}`}>
-                  <img src={productsItem?.productImgs[0]} alt="" className="img-fluid" />
                   {productsItem.title}
+                  <img src={productsItem?.productImgs[0]} alt="" className="img-fluid" />                
                 </Link>
               </ListGroup.Item>
             ))}
