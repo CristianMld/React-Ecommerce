@@ -13,7 +13,7 @@ export const cartSlice = createSlice({
     }
 })
 
-export const cartThunk = () => (dispatch) => {
+export const getCartThunk = () => (dispatch) => {
     dispatch(setIsLoading(true));
     return axios.get(`https://e-commerce-api.academlo.tech/api/v1/cart`, getConfig())
         .then((res) => dispatch(setCart(res.data.data.cart.products)))
