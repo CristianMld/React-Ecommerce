@@ -13,17 +13,28 @@ const Cart = ({ show, handleClose}) => {
 
   const cart = useSelector(state => state.cart);
 
+  let total = 0
+  cart.map(item => (
+    total += item.price * item.productsInCart.quantity     
+  ))
+
   return (
     <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Cart</Offcanvas.Title>
+          <Offcanvas.Title><i className="fa-solid fa-cart-shopping"></i></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           {
             cart.map(item => (
-              <li key={item.id}>{item.title}</li>
+              <li key={item.id}>
+                {item.title} {'  $'}
+                {item.price} {' x'}
+                {item.productsInCart.quantity}
+                <p>Sub total: ${item.price * item.productsInCart.quantity}</p>
+              </li>
             ))
           }
+          <h2>Total ${total}</h2>
           <Button onClick={() => dispatch(checkoutCartThunk())}>Checkout</Button>
         </Offcanvas.Body>
       </Offcanvas>

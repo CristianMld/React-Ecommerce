@@ -26,13 +26,20 @@ const ProductsDetail = () => {
 
   // console.log(relatedProducts);
 
-  const [ number, setNumber ] = useState('')
+  const [ number, setNumber ] = useState(1);
+
+  const decrease = () => {
+    if (number > 1) {
+      setNumber(number-1)
+    }
+  }
 
   const addToCart = () => {
     const newProduct = {
       id: product.id,
       quantity: number
     }
+    // console.log(newProduct)
     dispatch(createProductThunk(newProduct))
   }
 
@@ -44,7 +51,13 @@ const ProductsDetail = () => {
         <Col lg={9}>
           <img src={product?.productImgs[0]} alt="" className="img-fluid" />
           <p>{product?.description}</p>
-          <input type="text" value={number} onChange={(e) => setNumber(e.target.value)}/>
+          <div style={{display: 'flex', gap: '3px'}}>
+            <h3 onClick={decrease}><i className="fa-sharp fa-solid fa-square-minus"></i></h3>
+            <h3>{number}</h3>
+            <h3 onClick={() => setNumber(number+1)}><i className="fa-solid fa-square-plus"></i></h3>
+            <h3>${number * product?.price}</h3>
+          </div>
+          {/* <input required type="text" value={number} onChange={(e) => setNumber(e.target.value)}/> */}
           <Button onClick={addToCart}>Add to cart</Button>
         </Col>
 

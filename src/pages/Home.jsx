@@ -46,7 +46,7 @@ const Home = () => {
 
         {/* Products */}
         <Col lg={9}>
-          <h1>Home component</h1>
+          <h1>Welcome!</h1>
           <InputGroup className="mb-3">
             <Form.Control
               placeholder="look for a product..."

@@ -20,12 +20,11 @@ const Purchases = () => {
       {
         purchases.map(purchase => (
           <li key={purchase.id}>
-            <u>Date:</u> {purchase.cart.createdAt}
+            <h4><b>Date:</b> {purchase.cart.createdAt}</h4>
             {purchase.cart.products.map(item => (
               <Link key={item.id} to={`/product/${item.id}`}>
-                <p>
-                  {item.title}
-                </p>
+                <p>{item.title} ${item.price} x{item.productsInCart.quantity} 
+                {' | '}Total ${item.price * item.productsInCart.quantity}</p>
               </Link>
             ))}
           </li>
