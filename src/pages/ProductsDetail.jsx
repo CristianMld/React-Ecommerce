@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { createProductThunk } from "../store/slices/cart.slice";
 import { getProductsThunk } from "../store/slices/products.slice";
 
 
@@ -25,17 +26,26 @@ const ProductsDetail = () => {
 
   // console.log(relatedProducts);
 
+  const [ number, setNumber ] = useState('')
+
+  const addToCart = () => {
+    const newProduct = {
+      id: product.id,
+      quantity: number
+    }
+    dispatch(createProductThunk(newProduct))
+  }
+
   return (
     <div>
       <h1>{product?.title}</h1>
-      <div>
-        <Button>Add</Button>
-      </div>
       <Row>
         {/* Product's description */}
         <Col lg={9}>
           <img src={product?.productImgs[0]} alt="" className="img-fluid" />
           <p>{product?.description}</p>
+          <input type="text" value={number} onChange={(e) => setNumber(e.target.value)}/>
+          <Button onClick={addToCart}>Add to cart</Button>
         </Col>
 
         {/* Related products */}

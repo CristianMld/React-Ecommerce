@@ -24,7 +24,7 @@ const NavBar = () => {
             <Nav className="me-auto">
               <Nav.Link as={Link} to={'/login'}>Login</Nav.Link>
               <Nav.Link as={Link} to={'/purchases'}>Purchases</Nav.Link>
-              <Nav.Link onClick={handleShow}>Cart (Sidebar)</Nav.Link>
+              <Nav.Link onClick={handleShow}>Cart</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
