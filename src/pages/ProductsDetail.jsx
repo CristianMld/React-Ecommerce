@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { createProductThunk } from "../store/slices/cart.slice";
 import { getProductsThunk } from "../store/slices/products.slice";
 
@@ -41,6 +42,13 @@ const ProductsDetail = () => {
     }
     // console.log(newProduct)
     dispatch(createProductThunk(newProduct))
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Added to cart!',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   return (
