@@ -17,6 +17,10 @@ const ProductsDetail = () => {
     dispatch(getProductsThunk())
   }, [])
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id])
+
   const productsList = useSelector(state => state.products);
 
   const product = productsList.find(productsItem =>

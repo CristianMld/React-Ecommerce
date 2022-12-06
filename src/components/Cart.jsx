@@ -42,27 +42,29 @@ const Cart = ({ show, handleClose }) => {
               {item.title} {'  $'}
               {item.price} {' x'}
               {item.productsInCart.quantity}
-              <p>Sub total: ${item.price * item.productsInCart.quantity}</p>
-              <button className="delete-btn" onClick={() => {
-                Swal.fire({
-                  title: 'Are you sure?',
-                  text: "You won't be able to revert this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    dispatch(deleteProductThunk(item.id))
-                    Swal.fire(
-                      'Deleted!',
-                      'Your file has been deleted.',
-                      'success'
-                    )
-                  }
-                })
-              }}><i className="fa-sharp fa-solid fa-trash"></i></button>
+              <div className="total-and-delete-btn">
+                <p>Sub total: ${item.price * item.productsInCart.quantity}</p>
+                <button className="delete-btn" onClick={() => {
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      dispatch(deleteProductThunk(item.id))
+                      Swal.fire(
+                        'Deleted!',
+                        'The product has been removed from the cart.',
+                        'success'
+                      )
+                    }
+                  })
+                }}><i className="fa-sharp fa-solid fa-trash"></i></button>
+              </div>
             </li>
           ))
         }

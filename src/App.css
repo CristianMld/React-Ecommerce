@@ -99,9 +99,16 @@
   cursor: pointer;
   border: none;
   background-color: white;
+  color: red;
+  margin-bottom: 16px;
+  margin-left: 5px;
 }
 
 .categories-hover:hover {
   background-color: rgb(24, 23, 23);
   color: #fff;
+}
+
+.total-and-delete-btn {
+  display: flex;
 }

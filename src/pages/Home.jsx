@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Form, InputGroup, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { filterProductsThunk, filterTitleThunk, getProductsThunk } from "../store/slices/products.slice";
+import { filterName, filterProductsThunk, getProductsThunk } from "../store/slices/products.slice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,10 +20,6 @@ const Home = () => {
   }, [])
 
   // console.log(categoriesList);
-  
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   return (
     <div>
@@ -53,11 +49,11 @@ const Home = () => {
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               value={inputSearch}
-              onChange={(e) => setInputSearch(capitalizeFirstLetter(e.target.value))}
+              onChange={(e) => setInputSearch(e.target.value)}
             />
             <Button
               variant="outline-secondary"
-              onClick={() => dispatch(filterTitleThunk(inputSearch))}
+              onClick={() => dispatch(filterName(inputSearch))}
             >
               Search
             </Button>

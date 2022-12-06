@@ -8,6 +8,10 @@ export const productsSlice = createSlice({
     reducers: {
       setProducts: (state, action) => {
         return action.payload
+      },
+      filterName: (state, action) => {
+        const inputSearch = action.payload;
+        return state.filter(product => product.title.toLowerCase().includes(inputSearch.toLowerCase()))
       }
     }
 })
@@ -26,13 +30,6 @@ export const filterProductsThunk = (id) => dispatch => {
         .finally(() => dispatch(setIsLoading(false)));
 }
 
-export const filterTitleThunk = (inputSearch) => dispatch => {
-    dispatch(setIsLoading(true));
-    return axios.get(`https://e-commerce-api.academlo.tech/api/v1/products?query=${inputSearch}`)
-        .then((res) => dispatch(setProducts(res.data?.data.products)))
-        .finally(() => dispatch(setIsLoading(false)));
-}
-
-export const { setProducts } = productsSlice.actions;
+export const { setProducts, filterName } = productsSlice.actions;
 
 export default productsSlice.reducer;
