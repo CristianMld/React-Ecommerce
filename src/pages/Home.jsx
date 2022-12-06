@@ -36,7 +36,7 @@ const Home = () => {
                 <ListGroup.Item
                   key={category.id}
                   onClick={() => dispatch(filterProductsThunk(category.id))}
-                  style={{ cursor: 'pointer' }}>
+                  style={{ cursor: 'pointer' }} className='categories-hover'>
                   {category.name}
                 </ListGroup.Item>
               ))
@@ -77,7 +77,7 @@ const Home = () => {
                     <Card.Body>
                       <Card.Title>{product.title}</Card.Title>
                       <Card.Text>
-                        {product.description}
+                        ${product.price}
                       </Card.Text>
                     </Card.Body>
                   </Link>

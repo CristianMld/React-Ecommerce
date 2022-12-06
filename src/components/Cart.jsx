@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Button, Offcanvas } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { checkoutCartThunk, getCartThunk } from "../store/slices/cart.slice";
+import { checkoutCartThunk, deleteProductThunk, getCartThunk } from "../store/slices/cart.slice";
 
 const Cart = ({ show, handleClose }) => {
 
@@ -33,7 +33,7 @@ const Cart = ({ show, handleClose }) => {
   return (
     <Offcanvas show={show} onHide={handleClose}>
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title><i className="fa-solid fa-cart-shopping"></i></Offcanvas.Title>
+        <Offcanvas.Title><h2><i className="fa-solid fa-cart-shopping"></i></h2></Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         {
@@ -43,6 +43,26 @@ const Cart = ({ show, handleClose }) => {
               {item.price} {' x'}
               {item.productsInCart.quantity}
               <p>Sub total: ${item.price * item.productsInCart.quantity}</p>
+              <button className="delete-btn" onClick={() => {
+                Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    dispatch(deleteProductThunk(item.id))
+                    Swal.fire(
+                      'Deleted!',
+                      'Your file has been deleted.',
+                      'success'
+                    )
+                  }
+                })
+              }}><i className="fa-sharp fa-solid fa-trash"></i></button>
             </li>
           ))
         }

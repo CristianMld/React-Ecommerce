@@ -27,6 +27,14 @@ export const createProductThunk = (newProduct) => (dispatch) => {
       .finally(() => dispatch(setIsLoading(false)));
 }
 
+export const deleteProductThunk = (id) => (dispatch) => {
+    dispatch(setIsLoading(true));
+    return axios.delete(`https://e-commerce-api.academlo.tech/api/v1/cart/${id}`, getConfig())
+        .then(() => dispatch(getCartThunk()))
+        .catch(error => console.log(error.response.data))
+        .finally(() => dispatch(setIsLoading(false)));
+}
+
 export const checkoutCartThunk = () => (dispatch) => {
     dispatch(setIsLoading(true));
     return axios.post(`https://e-commerce-api.academlo.tech/api/v1/purchases`, {}, getConfig())

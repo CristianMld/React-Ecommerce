@@ -94,3 +94,14 @@
     transform: rotate(360deg);
   }
 }
+
+.delete-btn {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+
+.categories-hover:hover {
+  background-color: rgb(24, 23, 23);
+  color: #fff;
+}

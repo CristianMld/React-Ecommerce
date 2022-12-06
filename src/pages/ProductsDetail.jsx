@@ -77,7 +77,8 @@ const ProductsDetail = () => {
               <ListGroup.Item key={productsItem.id}>
                 <Link to={`/product/${productsItem.id}`}>
                   {productsItem.title}
-                  <img src={productsItem?.productImgs[0]} alt="" className="img-fluid" />                
+                  <p>${productsItem.price}</p>
+                  <img src={productsItem?.productImgs[0]} alt="" className="img-fluid" />         
                 </Link>
               </ListGroup.Item>
             ))}
